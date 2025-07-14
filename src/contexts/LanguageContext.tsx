@@ -142,6 +142,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, []);
 
+  useEffect(() => {
+    // Apply language-specific styling to the document
+    if (language === 'ne') {
+      document.documentElement.classList.add('nepali-font');
+      document.body.classList.add('nepali-text');
+    } else {
+      document.documentElement.classList.remove('nepali-font');
+      document.body.classList.remove('nepali-text');
+    }
+  }, [language]);
+
   const toggleLanguage = () => {
     const newLanguage: Language = language === 'en' ? 'ne' : 'en';
     setLanguage(newLanguage);
