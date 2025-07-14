@@ -1,17 +1,16 @@
-
 import { useState } from "react";
-import { Calendar, Clock, MapPin, Users, Search, Filter, Eye, Share2, Heart } from "lucide-react";
+import { Calendar, Clock, MapPin, Users, Search, Eye, Share2, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Events = () => {
-  const [filter, setFilter] = useState("all");
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const [favoriteEvents, setFavoriteEvents] = useState<number[]>([]);
@@ -22,7 +21,7 @@ const Events = () => {
       id: 1,
       title: "Teej Mahotsav 2024",
       description: "Traditional Teej festival celebration with cultural programs, dance, and feast",
-      fullDescription: "Join us for a grand celebration of Teej, one of the most important festivals in our culture. This event will feature traditional dance performances, cultural programs, and a community feast. Women will dress in traditional red and green attire, perform traditional songs and dances, and participate in the ritualistic worship. The event will also include storytelling sessions about the significance of Teej and its cultural importance in our community.",
+      fullDescription: "Join us for a grand celebration of Teej, one of the most important festivals in our culture. This event will feature traditional dance performances, cultural programs, and a community feast.",
       date: "2024-09-15",
       time: "10:00 AM - 6:00 PM",
       venue: "Community Hall, Kathmandu",
@@ -100,10 +99,9 @@ const Events = () => {
   const previousEvents = events.filter(event => event.status === "past");
 
   const filteredEvents = events.filter(event => {
-    const matchesFilter = filter === "all" || event.category === filter || event.status === filter;
     const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          event.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
+    return matchesSearch;
   });
 
   const formatDate = (dateString: string) => {
@@ -123,12 +121,6 @@ const Events = () => {
       case 'social': return 'bg-gold-100 text-gold-800';
       default: return 'bg-gray-100 text-gray-800';
     }
-  };
-
-  const getStatusColor = (status: string) => {
-    return status === 'upcoming' 
-      ? 'bg-green-100 text-green-800' 
-      : 'bg-gray-100 text-gray-600';
   };
 
   const handleEventClick = (event: any) => {
@@ -165,28 +157,27 @@ const Events = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-saffron-50 via-white to-emerald-50">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-maroon-800 to-maroon-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-maroon-800 to-maroon-900 text-white animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6 font-serif">Community Events</h1>
-            <p className="text-xl text-saffron-200 mb-4">सामुदायिक कार्यक्रमहरू</p>
-            <p className="text-lg max-w-3xl mx-auto leading-relaxed">
-              Join us in celebrating our rich cultural heritage through festivals, meetings, 
-              and community gatherings that bring us together as one family.
+            <h1 className="text-5xl font-bold mb-6 font-serif animate-fade-in">{t('events.title')}</h1>
+            <p className="text-xl text-saffron-200 mb-4 animate-fade-in" style={{animationDelay: '0.2s'}}>{t('events.subtitle')}</p>
+            <p className="text-lg max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
+              {t('events.description')}
             </p>
           </div>
         </div>
       </section>
 
       {/* Event Categories */}
-      <section className="py-12">
+      <section className="py-12 animate-fade-in" style={{animationDelay: '0.6s'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Search Bar */}
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-8">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
-                placeholder="Search events..."
+                placeholder={t('events.search')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -198,10 +189,10 @@ const Events = () => {
           <Tabs defaultValue="upcoming" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-8">
               <TabsTrigger value="upcoming" className="text-base">
-                Upcoming Events ({upcomingEvents.length})
+                {t('events.upcoming')} ({upcomingEvents.length})
               </TabsTrigger>
               <TabsTrigger value="previous" className="text-base">
-                Previous Events ({previousEvents.length})
+                {t('events.previous')} ({previousEvents.length})
               </TabsTrigger>
             </TabsList>
 
@@ -212,25 +203,26 @@ const Events = () => {
                     event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     event.description.toLowerCase().includes(searchTerm.toLowerCase())
                   )
-                  .map((event) => (
+                  .map((event, index) => (
                   <Card 
                     key={event.id} 
-                    className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-saffron-200 cursor-pointer transform hover:-translate-y-2 animate-fade-in"
+                    className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-saffron-200 cursor-pointer transform hover:-translate-y-2 animate-fade-in photo-hover"
+                    style={{animationDelay: `${index * 0.1}s`}}
                     onClick={() => handleEventClick(event)}
                   >
                     <div className="relative">
                       <img
-                      loading="lazy"
+                        loading="lazy"
                         src={event.image}
                         alt={event.title}
-                        className="w-full h-48 object-cover"
+                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                       <div className="absolute top-4 right-4 flex gap-2">
                         <Badge className={getCategoryColor(event.category)}>
                           {event.category}
                         </Badge>
                         <Badge className="bg-green-100 text-green-800">
-                          Upcoming
+                          {t('events.upcoming')}
                         </Badge>
                       </div>
                     </div> 
@@ -272,7 +264,7 @@ const Events = () => {
                               handleRegister(event);
                             }}
                           >
-                            Register Now
+                            {t('events.register')}
                           </Button>
                           <Button
                             variant="outline"
@@ -305,7 +297,7 @@ const Events = () => {
                           }}
                         >
                           <Eye className="h-4 w-4 mr-2" />
-                          View Details
+                          {t('events.viewDetails')}
                         </Button>
                       </div>
                     </CardContent>
@@ -316,8 +308,8 @@ const Events = () => {
                 event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 event.description.toLowerCase().includes(searchTerm.toLowerCase())
               ).length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-lg text-gray-600">No upcoming events found.</p>
+                <div className="text-center py-12 animate-fade-in">
+                  <p className="text-lg text-gray-600">{t('events.noUpcoming')}</p>
                 </div>
               )}
             </TabsContent>
@@ -329,18 +321,19 @@ const Events = () => {
                     event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     event.description.toLowerCase().includes(searchTerm.toLowerCase())
                   )
-                  .map((event) => (
+                  .map((event, index) => (
                   <Card 
                     key={event.id} 
-                    className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-saffron-200 cursor-pointer transform hover:-translate-y-2 animate-fade-in"
+                    className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-saffron-200 cursor-pointer transform hover:-translate-y-2 animate-fade-in photo-hover"
+                    style={{animationDelay: `${index * 0.1}s`}}
                     onClick={() => handleEventClick(event)}
                   >
                     <div className="relative">
                       <img
-                    loading="lazy"
+                        loading="lazy"
                         src={event.image}
                         alt={event.title}
-                        className="w-full h-48 object-cover"
+                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                       <div className="absolute top-4 right-4 flex gap-2">
                         <Badge className={getCategoryColor(event.category)}>
@@ -422,7 +415,7 @@ const Events = () => {
                           }}
                         >
                           <Eye className="h-4 w-4 mr-2" />
-                          View Details
+                          {t('events.viewDetails')}
                         </Button>
                       </div>
                     </CardContent>
@@ -433,8 +426,8 @@ const Events = () => {
                 event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 event.description.toLowerCase().includes(searchTerm.toLowerCase())
               ).length === 0 && (
-                <div className="text-center py-12">
-                  <p className="text-lg text-gray-600">No previous events found.</p>
+                <div className="text-center py-12 animate-fade-in">
+                  <p className="text-lg text-gray-600">{t('events.noPrevious')}</p>
                 </div>
               )}
             </TabsContent>
@@ -443,20 +436,20 @@ const Events = () => {
       </section>
 
       {/* Event Gallery Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">Event Gallery</h2>
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">{t('events.eventGallery')}</h2>
             <p className="text-lg text-gray-600">
-              Memories from our recent celebrations
+              {t('events.memoriesDesc')}
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {events.slice(0, 8).map((event, index) => (
-              <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
+              <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg animate-fade-in photo-hover" style={{animationDelay: `${index * 0.1}s`}}>
                 <img
-                loading="lazy"
+                  loading="lazy"
                   src={event.image}
                   alt={event.title}
                   className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
@@ -482,7 +475,7 @@ const Events = () => {
             
             <div className="space-y-6">
               <img
-              loading="lazy"
+                loading="lazy"
                 src={selectedEvent.image}
                 alt={selectedEvent.title}
                 className="w-full h-64 object-cover rounded-lg"
@@ -518,7 +511,7 @@ const Events = () => {
                     <Badge className={getCategoryColor(selectedEvent.category)}>
                       {selectedEvent.category}
                     </Badge>
-                    <Badge className={getStatusColor(selectedEvent.status)}>
+                    <Badge className="bg-green-100 text-green-800">
                       {selectedEvent.status}
                     </Badge>
                   </div>
@@ -539,14 +532,14 @@ const Events = () => {
                         className="w-full bg-saffron-600 hover:bg-saffron-700 text-white"
                         onClick={() => handleRegister(selectedEvent)}
                       >
-                        Register for Event
+                        {t('events.register')}
                       </Button>
                     ) : (
                       <Button 
                         className="w-full bg-gray-500 hover:bg-gray-600 text-white"
                         onClick={() => {/* Navigate to gallery */}}
                       >
-                        View Event Gallery
+                        {t('events.viewGallery')}
                       </Button>
                     )}
                     
@@ -557,7 +550,7 @@ const Events = () => {
                         onClick={() => toggleFavorite(selectedEvent.id)}
                       >
                         <Heart className={`h-4 w-4 mr-2 ${favoriteEvents.includes(selectedEvent.id) ? "fill-current text-red-500" : ""}`} />
-                        {favoriteEvents.includes(selectedEvent.id) ? "Favorited" : "Add to Favorites"}
+                        {favoriteEvents.includes(selectedEvent.id) ? "Favorited" : t('events.addToFavorites')}
                       </Button>
                       
                       <Button
@@ -566,7 +559,7 @@ const Events = () => {
                         onClick={() => handleShare(selectedEvent)}
                       >
                         <Share2 className="h-4 w-4 mr-2" />
-                        Share Event
+                        {t('events.share')}
                       </Button>
                     </div>
                   </div>

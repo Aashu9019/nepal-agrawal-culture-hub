@@ -8,8 +8,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,7 +26,7 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: "Address",
+      title: t('contact.address'),
       details: [
         "Nepal Agrawal Samaj",
         "Kathmandu, Nepal",
@@ -34,7 +36,7 @@ const Contact = () => {
     },
     {
       icon: Phone,
-      title: "Phone",
+      title: t('contact.phone'),
       details: [
         "+977-1-XXXXXXX",
         "+977-98XXXXXXXX"
@@ -43,7 +45,7 @@ const Contact = () => {
     },
     {
       icon: Mail,
-      title: "Email",
+      title: t('contact.email'),
       details: [
         "info@nepalagrawalsamaj.org",
         "contact@nepalagrawalsamaj.org"
@@ -52,7 +54,7 @@ const Contact = () => {
     },
     {
       icon: Clock,
-      title: "Office Hours",
+      title: t('contact.hours'),
       details: [
         "Monday - Friday: 10:00 AM - 6:00 PM",
         "Saturday: 10:00 AM - 2:00 PM",
@@ -103,32 +105,35 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-saffron-50 via-white to-emerald-50">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-maroon-800 to-maroon-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-maroon-800 to-maroon-900 text-white animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6 font-serif">Contact Us</h1>
-            <p className="text-xl text-saffron-200 mb-4">हामीसँग सम्पर्क गर्नुहोस्</p>
-            <p className="text-lg max-w-3xl mx-auto leading-relaxed">
-              We're here to help and answer any questions you might have. 
-              Reach out to us and we'll respond as soon as possible.
+            <h1 className="text-5xl font-bold mb-6 font-serif">{t('contact.title')}</h1>
+            <p className="text-xl text-saffron-200 mb-4 animate-fade-in" style={{animationDelay: '0.2s'}}>{t('contact.subtitle')}</p>
+            <p className="text-lg max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
+              {t('contact.description')}
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Information */}
-      <section className="py-16">
+      <section className="py-16 animate-fade-in" style={{animationDelay: '0.6s'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">Get In Touch</h2>
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">{t('contact.getInTouch')}</h2>
             <p className="text-lg text-gray-600">
-              Multiple ways to reach Nepal Agrawal Samaj
+              {t('contact.multipleWays')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="text-center border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card 
+                key={index} 
+                className="text-center border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in photo-hover"
+                style={{animationDelay: `${index * 0.1}s`}}
+              >
                 <CardHeader>
                   <div className="w-16 h-16 bg-gradient-to-br from-saffron-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <info.icon className={`h-8 w-8 ${info.color}`} />
@@ -153,12 +158,12 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div>
+          <div className="animate-fade-in" style={{animationDelay: '0.8s'}}>
             <Card className="shadow-2xl border-saffron-200">
               <CardHeader className="bg-gradient-to-r from-saffron-100 to-emerald-100">
-                <CardTitle className="text-2xl text-maroon-700">Send us a Message</CardTitle>
+                <CardTitle className="text-2xl text-maroon-700">{t('contact.sendMessage')}</CardTitle>
                 <CardDescription className="text-gray-600">
-                  Fill out the form below and we'll get back to you as soon as possible
+                  {t('contact.formDesc')}
                 </CardDescription>
               </CardHeader>
               
@@ -166,7 +171,7 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="name">Full Name *</Label>
+                      <Label htmlFor="name">{t('contact.fullName')} *</Label>
                       <Input
                         id="name"
                         required
@@ -177,7 +182,7 @@ const Contact = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email">{t('contact.emailAddress')} *</Label>
                       <Input
                         id="email"
                         type="email"
@@ -191,7 +196,7 @@ const Contact = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="phone">Phone Number</Label>
+                      <Label htmlFor="phone">{t('contact.phoneNumber')}</Label>
                       <Input
                         id="phone"
                         value={formData.phone}
@@ -201,7 +206,7 @@ const Contact = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="inquiryType">Inquiry Type</Label>
+                      <Label htmlFor="inquiryType">{t('contact.inquiryType')}</Label>
                       <Select value={formData.inquiryType} onValueChange={(value) => handleInputChange("inquiryType", value)}>
                         <SelectTrigger className="mt-1">
                           <SelectValue placeholder="Select inquiry type" />
@@ -218,7 +223,7 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="subject">Subject *</Label>
+                    <Label htmlFor="subject">{t('contact.subject')} *</Label>
                     <Input
                       id="subject"
                       required
@@ -229,7 +234,7 @@ const Contact = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="message">Message *</Label>
+                    <Label htmlFor="message">{t('contact.message')} *</Label>
                     <Textarea
                       id="message"
                       required
@@ -237,7 +242,7 @@ const Contact = () => {
                       onChange={(e) => handleInputChange("message", e.target.value)}
                       className="mt-1"
                       rows={6}
-                      placeholder="Please describe your inquiry in detail..."
+                      placeholder={t('contact.messagePlaceholder')}
                     />
                   </div>
                   
@@ -246,7 +251,7 @@ const Contact = () => {
                     className="w-full bg-maroon-600 hover:bg-maroon-700 text-white py-3 text-lg"
                   >
                     <Send className="h-5 w-5 mr-2" />
-                    Send Message
+                    {t('contact.sendBtn')}
                   </Button>
                 </form>
               </CardContent>
@@ -254,13 +259,13 @@ const Contact = () => {
           </div>
 
           {/* Map and Additional Info */}
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fade-in" style={{animationDelay: '1.0s'}}>
             {/* Embedded Map */}
             <Card className="shadow-2xl border-saffron-200">
               <CardHeader>
-                <CardTitle className="text-2xl text-maroon-700">Find Us</CardTitle>
+                <CardTitle className="text-2xl text-maroon-700">{t('contact.findUs')}</CardTitle>
                 <CardDescription>
-                  Visit us at our office in Kathmandu
+                  {t('contact.visitOffice')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-0">
@@ -278,16 +283,16 @@ const Contact = () => {
             {/* Social Media and Quick Contact */}
             <Card className="shadow-2xl border-saffron-200">
               <CardHeader>
-                <CardTitle className="text-2xl text-maroon-700">Connect With Us</CardTitle>
+                <CardTitle className="text-2xl text-maroon-700">{t('contact.connectWithUs')}</CardTitle>
                 <CardDescription>
-                  Follow us on social media for updates
+                  {t('contact.socialMedia')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex space-x-4">
                   <a
                     href="#"
-                    className="flex items-center space-x-3 bg-saffron-100 hover:bg-saffron-200 p-4 rounded-lg transition-colors flex-1"
+                    className="flex items-center space-x-3 bg-saffron-100 hover:bg-saffron-200 p-4 rounded-lg transition-colors flex-1 photo-hover"
                   >
                     <Facebook className="h-6 w-6 text-saffron-600" />
                     <div>
@@ -298,7 +303,7 @@ const Contact = () => {
                   
                   <a
                     href="#"
-                    className="flex items-center space-x-3 bg-emerald-100 hover:bg-emerald-200 p-4 rounded-lg transition-colors flex-1"
+                    className="flex items-center space-x-3 bg-emerald-100 hover:bg-emerald-200 p-4 rounded-lg transition-colors flex-1 photo-hover"
                   >
                     <Instagram className="h-6 w-6 text-emerald-600" />
                     <div>
@@ -309,7 +314,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="bg-gradient-to-r from-maroon-50 to-saffron-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-maroon-700 mb-4">Quick Contact</h3>
+                  <h3 className="text-lg font-semibold text-maroon-700 mb-4">{t('contact.quickContact')}</h3>
                   <div className="space-y-2 text-sm">
                     <p className="text-gray-600">
                       <span className="font-medium">Emergency Contact:</span> +977-98XXXXXXXX

@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, X, Download, Share2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, Share2 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Gallery = () => {
+  const { t } = useLanguage();
   const years = ["2024", "2023", "2022", "2021", "2020"];
   const [selectedAlbum, setSelectedAlbum] = useState<any>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -155,17 +157,17 @@ const Gallery = () => {
     <div className="min-h-screen bg-gradient-to-br from-saffron-50 to-emerald-50">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 animate-fade-in">
           <h1 className="text-4xl font-bold text-maroon-800 mb-4">
-            Photo Gallery
+            {t('gallery.title')}
           </h1>
           <p className="text-emerald-700 text-lg max-w-2xl mx-auto">
-            Capturing precious moments and cherished memories of our community events and celebrations
+            {t('gallery.description')}
           </p>
         </div>
 
         {/* Year-wise Photo Gallery */}
-        <Tabs defaultValue="2024" className="w-full">
+        <Tabs defaultValue="2024" className="w-full animate-fade-in" style={{animationDelay: '0.2s'}}>
           <TabsList className="grid w-full grid-cols-5 mb-8">
             {years.map((year) => (
               <TabsTrigger key={year} value={year} className="text-base">
@@ -177,15 +179,16 @@ const Gallery = () => {
           {years.map((year) => (
             <TabsContent key={year} value={year}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {photosByYear[year as keyof typeof photosByYear]?.map((album) => (
+                {photosByYear[year as keyof typeof photosByYear]?.map((album, index) => (
                   <Card 
                     key={album.id} 
-                    className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-gold-200 cursor-pointer animate-fade-in"
+                    className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-gold-200 cursor-pointer animate-fade-in photo-hover"
+                    style={{animationDelay: `${index * 0.1}s`}}
                     onClick={() => openGallery(album)}
                   >
                     <div className="h-48 bg-gradient-to-br from-saffron-100 to-emerald-100 flex items-center justify-center relative overflow-hidden group">
                       <img 
-                      loading="lazy"
+                        loading="lazy"
                         src={album.photos?.[0] || "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400"} 
                         alt={album.title}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
@@ -195,7 +198,7 @@ const Gallery = () => {
                           <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2 backdrop-blur-sm">
                             <span className="font-bold text-lg">{album.images}</span>
                           </div>
-                          <p className="font-medium">Click to View</p>
+                          <p className="font-medium">{t('gallery.clickToView')}</p>
                         </div>
                       </div>
                     </div>
@@ -209,7 +212,7 @@ const Gallery = () => {
                     </CardHeader>
                     <CardContent>
                       <p className="text-emerald-700 text-sm">
-                        View all {album.images} photos from this event
+                        {t('gallery.viewPhotos', { count: album.images })}
                       </p>
                     </CardContent>
                   </Card>
@@ -230,7 +233,7 @@ const Gallery = () => {
                 
                 <div className="relative">
                   <img
-                  loading="lazy"
+                    loading="lazy"
                     src={selectedAlbum.photos[currentImageIndex]}
                     alt={`${selectedAlbum.title} - Photo ${currentImageIndex + 1}`}
                     className="w-full h-[500px] object-cover"
@@ -276,7 +279,7 @@ const Gallery = () => {
                   <div className="flex gap-2">
                     {selectedAlbum.photos.map((photo: string, index: number) => (
                       <img
-                      loading="lazy"
+                        loading="lazy"
                         key={index}
                         src={photo}
                         alt={`Thumbnail ${index + 1}`}
