@@ -1,6 +1,5 @@
-
 import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, Mountain, Star, Users } from "lucide-react";
+import { Leaf, Mountain, Star, Users, Heart } from "lucide-react";
 
 export const About = () => {
   const values = [
@@ -11,7 +10,7 @@ export const About = () => {
     },
     {
       icon: <Leaf className="h-8 w-8 text-green-600" />,
-      title: "Cultural Heritage",
+      title: "Cultural Heritage", 
       description: "Preserving and promoting our rich Agrawal traditions"
     },
     {
