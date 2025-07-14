@@ -4,9 +4,11 @@ import { Calendar, Users, Heart, ArrowRight, ChevronLeft, ChevronRight } from "l
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
-  const [currentSlide, setCurrentSlide] = useState(0); 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const { t } = useLanguage();
 
   const events = [
     {
@@ -40,48 +42,46 @@ const Index = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + events.length) % events.length);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen language-transition">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-saffron-100 via-emerald-50 to-gold-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <h1 className="text-5xl lg:text-6xl font-bold text-maroon-800 mb-6 font-serif">
-                Welcome to
-                <span className="block text-saffron-600">Nepal Agrawal Samaj</span>
+            <div className="text-center lg:text-left language-transition">
+              <h1 className="text-5xl lg:text-6xl font-bold text-maroon-800 mb-6 font-serif fade-in-up">
+                {t('home.welcome')}
+                <span className="block text-saffron-600 slide-in-right">{t('home.title')}</span>
               </h1>
-              <p className="text-xl text-emerald-700 mb-4 font-medium">
-                नेपाल अग्रवाल समाज में आपका स्वागत है
+              <p className="text-xl text-emerald-700 mb-4 font-medium slide-in-left">
+                {t('home.subtitle')}
               </p>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Following the noble ideals of Maharaja Agrasen, we unite the Agrawal community 
-                in Nepal to preserve our rich heritage, foster unity, and promote cultural values 
-                for future generations.
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed language-transition">
+                {t('home.description')}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button asChild className="bg-maroon-600 hover:bg-maroon-700 text-white px-8 py-3 text-lg">
+                <Button asChild className="bg-maroon-600 hover:bg-maroon-700 text-white px-8 py-3 text-lg photo-hover-effect">
                   <Link to="/membership">
-                    Become a Member
+                    {t('home.becomeMember')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-saffron-600 text-saffron-700 hover:bg-saffron-50 px-8 py-3 text-lg">
-                  <Link to="/about">Learn More</Link>
+                <Button asChild variant="outline" className="border-saffron-600 text-saffron-700 hover:bg-saffron-50 px-8 py-3 text-lg photo-hover-effect">
+                  <Link to="/about">{t('home.learnMore')}</Link>
                 </Button>
               </div>
             </div>
             <div className="flex justify-center"> 
               <div className="relative">
                 <img
-                 loading="lazy"
+                  loading="lazy"
                   src="/lovable-uploads/4c8e1252-8fc4-4179-b13a-d4d7a06f9936.png"
-                  alt="Maharaja Agrasen"
-                  className="w-full max-w-md h-auto rounded-lg shadow-2xl border-4 border-gold-300"
+                  alt={t('maharaja.name')}
+                  className="w-full max-w-md h-auto rounded-lg shadow-2xl border-4 border-gold-300 floating-animation shimmer-effect pulse-glow"
                 />
-                <div className="absolute -bottom-4 -right-4 bg-saffron-600 text-white p-4 rounded-lg shadow-lg">
-                  <p className="font-semibold text-sm">Maharaja Agrasen</p>
-                  <p className="text-xs">Our Guiding Light</p>
+                <div className="absolute -bottom-4 -right-4 bg-saffron-600 text-white p-4 rounded-lg shadow-lg photo-hover-effect language-transition">
+                  <p className="font-semibold text-sm">{t('maharaja.name')}</p>
+                  <p className="text-xs">{t('home.maharajaCaption')}</p>
                 </div>
               </div>
             </div>
@@ -90,57 +90,54 @@ const Index = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white language-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">Our Purpose</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Guided by the principles of unity, equality, and prosperity established by Maharaja Agrasen
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up">{t('home.purpose')}</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto language-transition">
+              {t('home.purposeDesc')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-saffron-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-saffron-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation">
                   <Users className="h-8 w-8 text-saffron-600" />
                 </div>
-                <CardTitle className="text-maroon-700">Unity</CardTitle>
+                <CardTitle className="text-maroon-700 language-transition">{t('home.unity')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-center text-gray-600">
-                  Bringing together Agrawal families across Nepal to strengthen our community bonds 
-                  and create lasting relationships.
+                <CardDescription className="text-center text-gray-600 language-transition">
+                  {t('home.unityDesc')}
                 </CardDescription>
               </CardContent>
             </Card>
 
-            <Card className="border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation" style={{ animationDelay: '1s' }}>
                   <Heart className="h-8 w-8 text-emerald-600" />
                 </div>
-                <CardTitle className="text-maroon-700">Heritage</CardTitle>
+                <CardTitle className="text-maroon-700 language-transition">{t('home.heritage')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-center text-gray-600">
-                  Preserving and celebrating our rich cultural traditions, customs, and values 
-                  for future generations.
+                <CardDescription className="text-center text-gray-600 language-transition">
+                  {t('home.heritageDesc')}
                 </CardDescription>
               </CardContent>
             </Card>
 
-            <Card className="border-gold-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="border-gold-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation" style={{ animationDelay: '2s' }}>
                   <Calendar className="h-8 w-8 text-gold-600" />
                 </div>
-                <CardTitle className="text-maroon-700">Growth</CardTitle>
+                <CardTitle className="text-maroon-700 language-transition">{t('home.growth')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-center text-gray-600">
-                  Supporting community development through educational, cultural, and social initiatives 
-                  that benefit all members.
+                <CardDescription className="text-center text-gray-600 language-transition">
+                  {t('home.growthDesc')}
                 </CardDescription>
               </CardContent>
             </Card>
@@ -149,17 +146,17 @@ const Index = () => {
       </section>
 
       {/* Events Carousel */}
-      <section className="py-16 bg-gradient-to-r from-emerald-50 to-saffron-50">
+      <section className="py-16 bg-gradient-to-r from-emerald-50 to-saffron-50 language-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">Our Cultural Events</h2>
-            <p className="text-lg text-gray-600">
-              Celebrating traditions and creating memories together
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up">{t('home.events')}</h2>
+            <p className="text-lg text-gray-600 language-transition">
+              {t('home.eventsDesc')}
             </p>
           </div>
 
           <div className="relative">
-            <div className="overflow-hidden rounded-xl shadow-2xl">
+            <div className="overflow-hidden rounded-xl shadow-2xl shimmer-effect">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -169,10 +166,11 @@ const Index = () => {
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="w-full h-96 object-cover"
+                      className="w-full h-96 object-cover photo-hover-effect"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white language-transition">
                       <h3 className="text-3xl font-bold mb-2">{event.title}</h3>
                       <p className="text-lg mb-2">{event.description}</p>
                       <p className="text-saffron-200 font-medium">{event.date}</p>
@@ -185,13 +183,13 @@ const Index = () => {
             {/* Navigation buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all photo-hover-effect"
             >
               <ChevronLeft className="h-6 w-6 text-maroon-600" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all photo-hover-effect"
             >
               <ChevronRight className="h-6 w-6 text-maroon-600" />
             </button>
@@ -202,8 +200,8 @@ const Index = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentSlide ? "bg-maroon-600" : "bg-gray-300"
+                  className={`w-3 h-3 rounded-full transition-all photo-hover-effect ${
+                    index === currentSlide ? "bg-maroon-600 scale-110" : "bg-gray-300"
                   }`}
                 />
               ))}
@@ -211,9 +209,9 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Button asChild className="bg-saffron-600 hover:bg-saffron-700 text-white px-8 py-3">
+            <Button asChild className="bg-saffron-600 hover:bg-saffron-700 text-white px-8 py-3 photo-hover-effect">
               <Link to="/events">
-                View All Events
+                {t('home.viewAllEvents')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
