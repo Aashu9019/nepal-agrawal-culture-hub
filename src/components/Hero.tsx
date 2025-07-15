@@ -25,7 +25,7 @@ export const Hero = () => {
           </div>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in leading-tight">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in leading-tight" style={{animationDelay: '0.2s'}}>
           <span className="bg-gradient-to-r from-yellow-200 to-orange-300 bg-clip-text text-transparent">
             Nepal Agrawal
           </span>
@@ -33,11 +33,11 @@ export const Hero = () => {
           <span className="text-white">Samaj</span>
         </h1>
 
-        <p className="text-xl md:text-2xl mb-8 text-red-100 animate-fade-in max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl mb-8 text-red-100 animate-fade-in max-w-2xl mx-auto leading-relaxed" style={{animationDelay: '0.4s'}}>
           Preserving our rich heritage, fostering unity, and building a stronger community together
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{animationDelay: '0.6s'}}>
           <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-red-900 font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <Users className="mr-2 h-5 w-5" />
             Join Our Community
@@ -47,7 +47,7 @@ export const Hero = () => {
           </Button>
         </div>
 
-        <div className="mt-16 animate-bounce">
+        <div className="mt-16 animate-bounce" style={{animationDelay: '0.8s'}}>
           <ArrowDown className="h-8 w-8 mx-auto text-white/70" />
         </div>
       </div>

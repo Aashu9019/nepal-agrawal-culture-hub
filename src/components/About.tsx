@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Mountain, Star, Users, Heart } from "lucide-react";
 
@@ -28,7 +29,7 @@ export const About = () => {
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold text-red-800 mb-6">
             About Our <span className="text-yellow-600">Community</span>
           </h2>
@@ -39,9 +40,9 @@ export const About = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 stagger-children">
           {values.map((value, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-red-50">
+            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-red-50 card-animated">
               <CardContent className="p-6 text-center">
                 <div className="mb-4 flex justify-center">
                   {value.icon}
@@ -53,7 +54,7 @@ export const About = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden animate-fade-in" style={{animationDelay: '0.8s'}}>
           <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/20 rounded-full -translate-y-16 translate-x-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
           

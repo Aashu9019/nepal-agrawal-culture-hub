@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Calendar, User, Eye, Search, Tag, MapPin, Clock } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,10 +14,10 @@ const Gallery = () => {
   const galleryItems = [
     {
       id: 1,
-      title: language === 'nepali' ? 'दिवाली उत्सव २०२४' : 'Diwali Festival 2024',
-      description: language === 'nepali' ? 'परम्परागत नृत्य, सांस्कृतिक कार्यक्रम र दावत सहितको भव्य दिवाली उत्सव' : 'Grand Diwali celebration with traditional dance, cultural programs, and feast',
+      title: language === 'en' ? 'Diwali Festival 2024' : 'दिवाली उत्सव २०२४',
+      description: language === 'en' ? 'Grand Diwali celebration with traditional dance, cultural programs, and feast' : 'परम्परागत नृत्य, सांस्कृतिक कार्यक्रम र दावत सहितको भव्य दिवाली उत्सव',
       date: "2024-11-15",
-      location: language === 'nepali' ? 'सामुदायिक हल, काठमाडौं' : 'Community Hall, Kathmandu',
+      location: language === 'en' ? 'Community Hall, Kathmandu' : 'सामुदायिक हल, काठमाडौं',
       category: "cultural",
       views: 1250,
       image: "bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400",
@@ -24,10 +25,10 @@ const Gallery = () => {
     },
     {
       id: 2,
-      title: language === 'nepali' ? 'सामुदायिक सेवा दिवस' : 'Community Service Day',
-      description: language === 'nepali' ? 'समुदायका सदस्यहरूले मिलेर सेवाकार्यमा भाग लिएको दिन' : 'Community members came together for service activities',
+      title: language === 'en' ? 'Community Service Day' : 'सामुदायिक सेवा दिवस',
+      description: language === 'en' ? 'Community members came together for service activities' : 'समुदायका सदस्यहरूले मिलेर सेवाकार्यमा भाग लिएको दिन',
       date: "2024-10-20",
-      location: language === 'nepali' ? 'विभिन्न स्थानहरू' : 'Various Locations',
+      location: language === 'en' ? 'Various Locations' : 'विभिन्न स्थानहरू',
       category: "service",
       views: 890,
       image: "bg-gradient-to-br from-green-400 via-teal-400 to-blue-400",
@@ -35,10 +36,10 @@ const Gallery = () => {
     },
     {
       id: 3,
-      title: language === 'nepali' ? 'युवा कार्यशाला' : 'Youth Workshop',
-      description: language === 'nepali' ? 'युवा सदस्यहरूका लागि सीप विकास र क्यारियर मार्गदर्शन' : 'Skill development and career guidance for young members',
+      title: language === 'en' ? 'Youth Workshop' : 'युवा कार्यशाला',
+      description: language === 'en' ? 'Skill development and career guidance for young members' : 'युवा सदस्यहरूका लागि सीप विकास र क्यारियर मार्गदर्शन',
       date: "2024-12-01",
-      location: language === 'nepali' ? 'युवा केन्द्र, ललितपुर' : 'Youth Center, Lalitpur',
+      location: language === 'en' ? 'Youth Center, Lalitpur' : 'युवा केन्द्र, ललितपुर',
       category: "education",
       views: 670,
       image: "bg-gradient-to-br from-purple-400 via-pink-400 to-red-400",
@@ -46,10 +47,10 @@ const Gallery = () => {
     },
     {
       id: 4,
-      title: language === 'nepali' ? 'वार्षिक भेला' : 'Annual Gathering',
-      description: language === 'nepali' ? 'सबै सदस्यहरू एकसाथ आउने वार्षिक सामुदायिक भेला' : 'Annual community gathering where all members come together',
+      title: language === 'en' ? 'Annual Gathering' : 'वार्षिक भेला',
+      description: language === 'en' ? 'Annual community gathering where all members come together' : 'सबै सदस्यहरू एकसाथ आउने वार्षिक सामुदायिक भेला',
       date: "2025-01-15",
-      location: language === 'nepali' ? 'होटल अन्नपूर्ण, काठमाडौं' : 'Hotel Annapurna, Kathmandu',
+      location: language === 'en' ? 'Hotel Annapurna, Kathmandu' : 'होटल अन्नपूर्ण, काठमाडौं',
       category: "community",
       views: 1500,
       image: "bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-400",
@@ -57,10 +58,10 @@ const Gallery = () => {
     },
     {
       id: 5,
-      title: language === 'nepali' ? 'सांस्कृतिक प्रदर्शन' : 'Cultural Performance',
-      description: language === 'nepali' ? 'समुदायका सदस्यहरूद्वारा परम्परागत नृत्य र संगीत' : 'Traditional dance and music by community members',
+      title: language === 'en' ? 'Cultural Performance' : 'सांस्कृतिक प्रदर्शन',
+      description: language === 'en' ? 'Traditional dance and music by community members' : 'समुदायका सदस्यहरूद्वारा परम्परागत नृत्य र संगीत',
       date: "2024-11-25",
-      location: language === 'nepali' ? 'कला केन्द्र, भक्तपुर' : 'Art Center, Bhaktapur',
+      location: language === 'en' ? 'Art Center, Bhaktapur' : 'कला केन्द्र, भक्तपुर',
       category: "cultural",
       views: 980,
       image: "bg-gradient-to-br from-red-400 via-pink-400 to-purple-400",
@@ -68,10 +69,10 @@ const Gallery = () => {
     },
     {
       id: 6,
-      title: language === 'nepali' ? 'व्यापार भेटघाट' : 'Business Meet',
-      description: language === 'nepali' ? 'सदस्यहरूका लागि व्यापार नेटवर्किंग अवसर' : 'Business networking opportunity for members',
+      title: language === 'en' ? 'Business Meet' : 'व्यापार भेटघाट',
+      description: language === 'en' ? 'Business networking opportunity for members' : 'सदस्यहरूका लागि व्यापार नेटवर्किंग अवसर',
       date: "2024-12-20",
-      location: language === 'nepali' ? 'व्यापार केन्द्र, काठमाडौं' : 'Business Center, Kathmandu',
+      location: language === 'en' ? 'Business Center, Kathmandu' : 'व्यापार केन्द्र, काठमाडौं',
       category: "business",
       views: 760,
       image: "bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600",
@@ -87,7 +88,7 @@ const Gallery = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(language === 'nepali' ? 'ne-NP' : 'en-US', { 
+    return date.toLocaleDateString(language === 'en' ? 'en-US' : 'ne-NP', { 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric' 
@@ -104,19 +105,20 @@ const Gallery = () => {
   };
 
   const getCategoryLabel = (category: string) => {
-    if (language === 'nepali') {
+    if (language === 'en') {
+      switch (category) {
+        case 'cultural': return 'Cultural';
+        case 'service': return 'Service';
+        case 'business': return 'Business';
+        default: return category;
+      }
+    } else {
       switch (category) {
         case 'cultural': return 'सांस्कृतिक';
         case 'service': return 'सेवा';
         case 'business': return 'व्यापार';
         default: return category;
       }
-    }
-    switch (category) {
-      case 'cultural': return 'Cultural';
-      case 'service': return 'Service';
-      case 'business': return 'Business';
-      default: return category;
     }
   };
 

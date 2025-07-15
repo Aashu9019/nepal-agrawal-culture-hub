@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { User, Phone, Mail, MapPin, Users, Upload, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,8 +8,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Membership = () => {
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     // Personal Information
     fullName: "",
@@ -54,23 +55,23 @@ const Membership = () => {
   const benefits = [
     {
       icon: Users,
-      title: "Community Network",
-      description: "Connect with Agrawal families across Nepal and build lasting relationships"
+      title: language === 'en' ? "Community Network" : "सामुदायिक नेटवर्क",
+      description: language === 'en' ? "Connect with Agrawal families across Nepal and build lasting relationships" : "नेपाल भरका अग्रवाल परिवारहरूसँग जोडिनुहोस् र दीर्घकालीन सम्बन्ध निर्माण गर्नुहोस्"
     },
     {
       icon: Check,
-      title: "Cultural Events",
-      description: "Participate in festivals, celebrations, and traditional ceremonies"
+      title: language === 'en' ? "Cultural Events" : "सांस्कृतिक कार्यक्रमहरू",
+      description: language === 'en' ? "Participate in festivals, celebrations, and traditional ceremonies" : "पर्वहरू, उत्सवहरू र परम्परागत समारोहहरूमा भाग लिनुहोस्"
     },
     {
       icon: Mail,
-      title: "Regular Updates",
-      description: "Stay informed about community news, events, and important announcements"
+      title: language === 'en' ? "Regular Updates" : "नियमित अपडेटहरू",
+      description: language === 'en' ? "Stay informed about community news, events, and important announcements" : "सामुदायिक समाचार, कार्यक्रमहरू र महत्वपूर्ण घोषणाहरूको जानकारी पाउनुहोस्"
     },
     {
       icon: Phone,
-      title: "Support System",
-      description: "Access community support for personal and professional needs"
+      title: language === 'en' ? "Support System" : "सहयोग प्रणाली",
+      description: language === 'en' ? "Access community support for personal and professional needs" : "व्यक्तिगत र व्यावसायिक आवश्यकताहरूका लागि सामुदायिक सहयोग प्राप्त गर्नुहोस्"
     }
   ];
 
@@ -163,7 +164,7 @@ const Membership = () => {
       preferences: {
         newsletter: data.newsletter
       },
-      profilePhoto: data.profilePhoto, // This would be handled by file upload service
+      profilePhoto: data.profilePhoto,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -175,11 +176,7 @@ const Membership = () => {
     if (!validateForm()) return;
 
     try {
-      // Prepare data for backend
       const backendData = prepareDataForBackend(formData);
-      
-      // Here you would typically make an API call to your backend
-      // Example: await fetch('/api/membership', { method: 'POST', body: JSON.stringify(backendData) })
       
       console.log("Prepared data for backend:", backendData);
       
@@ -225,34 +222,42 @@ const Membership = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-saffron-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-br from-saffron-50 via-white to-emerald-50 page-enter">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-maroon-800 to-maroon-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-maroon-800 to-maroon-900 text-white animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6 font-serif">Join Our Community</h1>
-            <p className="text-xl text-saffron-200 mb-4">सदस्यता लिनुहोस्</p>
-            <p className="text-lg max-w-3xl mx-auto leading-relaxed">
-              Become a part of Nepal Agrawal Samaj and connect with your cultural heritage. 
-              Join hundreds of families who share the values and traditions of Maharaja Agrasen.
+            <h1 className="text-5xl font-bold mb-6 font-serif animate-fade-in">
+              {language === 'en' ? 'Join Our Community' : 'हाम्रो समुदायमा सामेल हुनुहोस्'}
+            </h1>
+            <p className="text-xl text-saffron-200 mb-4 animate-fade-in" style={{animationDelay: '0.2s'}}>
+              {language === 'en' ? 'Membership Registration' : 'सदस्यता दर्ता'}
+            </p>
+            <p className="text-lg max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
+              {language === 'en' 
+                ? 'Become a part of Nepal Agrawal Samaj and connect with your cultural heritage. Join hundreds of families who share the values and traditions of Maharaja Agrasen.'
+                : 'नेपाल अग्रवाल समाजको सदस्य बन्नुहोस् र आफ्नो सांस्कृतिक सम्पदासँग जोडिनुहोस्। महाराजा अग्रसेणका मूल्य र परम्पराहरू साझा गर्ने सयौं परिवारहरूसँग जोडिनुहोस्।'
+              }
             </p>
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16">
+      <section className="py-16 animate-fade-in" style={{animationDelay: '0.6s'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">Membership Benefits</h2>
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">
+              {language === 'en' ? 'Membership Benefits' : 'सदस्यताका फाइदाहरू'}
+            </h2>
             <p className="text-lg text-gray-600">
-              Why join Nepal Agrawal Samaj?
+              {language === 'en' ? 'Why join Nepal Agrawal Samaj?' : 'नेपाल अग्रवाल समाजमा किन सामेल हुने?'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 stagger-children">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card key={index} className="text-center border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300 card-animated">
                 <CardHeader>
                   <div className="w-16 h-16 bg-gradient-to-br from-saffron-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <benefit.icon className="h-8 w-8 text-maroon-600" />
@@ -271,20 +276,27 @@ const Membership = () => {
       </section>
 
       {/* Registration Form */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white animate-fade-in" style={{animationDelay: '0.8s'}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">Membership Registration</h2>
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">
+              {language === 'en' ? 'Membership Registration' : 'सदस्यता दर्ता'}
+            </h2>
             <p className="text-lg text-gray-600">
-              Fill out the form below to join our community
+              {language === 'en' ? 'Fill out the form below to join our community' : 'हाम्रो समुदायमा सामेल हुन तलको फारम भर्नुहोस्'}
             </p>
           </div>
 
           <Card className="shadow-2xl border-saffron-200">
             <CardHeader className="bg-gradient-to-r from-saffron-100 to-emerald-100">
-              <CardTitle className="text-2xl text-maroon-700 text-center">Registration Form</CardTitle>
+              <CardTitle className="text-2xl text-maroon-700 text-center">
+                {language === 'en' ? 'Registration Form' : 'दर्ता फारम'}
+              </CardTitle>
               <CardDescription className="text-center text-gray-600">
-                Please provide accurate information for processing your membership
+                {language === 'en' 
+                  ? 'Please provide accurate information for processing your membership'
+                  : 'कृपया आफ्नो सदस्यता प्रक्रियाका लागि सहि जानकारी प्रदान गर्नुहोस्'
+                }
               </CardDescription>
             </CardHeader>
             
@@ -293,12 +305,12 @@ const Membership = () => {
                 {/* Personal Information */}
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-maroon-700 border-b border-saffron-200 pb-2">
-                    Personal Information
+                    {language === 'en' ? 'Personal Information' : 'व्यक्तिगत जानकारी'}
                   </h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="fullName">Full Name *</Label>
+                      <Label htmlFor="fullName">{language === 'en' ? 'Full Name *' : 'पूरा नाम *'}</Label>
                       <Input
                         id="fullName"
                         required
@@ -309,7 +321,7 @@ const Membership = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="fatherName">Father's Name *</Label>
+                      <Label htmlFor="fatherName">{language === 'en' ? "Father's Name *" : 'बुबाको नाम *'}</Label>
                       <Input
                         id="fatherName"
                         required
@@ -320,7 +332,7 @@ const Membership = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="motherName">Mother's Name</Label>
+                      <Label htmlFor="motherName">{language === 'en' ? "Mother's Name" : 'आमाको नाम'}</Label>
                       <Input
                         id="motherName"
                         value={formData.motherName}
@@ -330,7 +342,7 @@ const Membership = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="dateOfBirth">Date of Birth *</Label>
+                      <Label htmlFor="dateOfBirth">{language === 'en' ? 'Date of Birth *' : 'जन्म मिति *'}</Label>
                       <Input
                         id="dateOfBirth"
                         type="date"
@@ -342,10 +354,10 @@ const Membership = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="gotra">Gotra *</Label>
+                      <Label htmlFor="gotra">{language === 'en' ? 'Gotra *' : 'गोत्र *'}</Label>
                       <Select value={formData.gotra} onValueChange={(value) => handleInputChange("gotra", value)}>
                         <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Select your gotra" />
+                          <SelectValue placeholder={language === 'en' ? "Select your gotra" : "आफ्नो गोत्र छान्नुहोस्"} />
                         </SelectTrigger>
                         <SelectContent>
                           {gotras.map((gotra) => (
@@ -358,23 +370,23 @@ const Membership = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="maritalStatus">Marital Status</Label>
+                      <Label htmlFor="maritalStatus">{language === 'en' ? 'Marital Status' : 'वैवाहिक स्थिति'}</Label>
                       <Select value={formData.maritalStatus} onValueChange={(value) => handleInputChange("maritalStatus", value)}>
                         <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Select status" />
+                          <SelectValue placeholder={language === 'en' ? "Select status" : "स्थिति छान्नुहोस्"} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="single">Single</SelectItem>
-                          <SelectItem value="married">Married</SelectItem>
-                          <SelectItem value="divorced">Divorced</SelectItem>
-                          <SelectItem value="widowed">Widowed</SelectItem>
+                          <SelectItem value="single">{language === 'en' ? 'Single' : 'अविवाहित'}</SelectItem>
+                          <SelectItem value="married">{language === 'en' ? 'Married' : 'विवाहित'}</SelectItem>
+                          <SelectItem value="divorced">{language === 'en' ? 'Divorced' : 'सम्बन्धविच्छेद'}</SelectItem>
+                          <SelectItem value="widowed">{language === 'en' ? 'Widowed' : 'विधवा/विधुर'}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     
                     {formData.maritalStatus === "married" && (
                       <div>
-                        <Label htmlFor="spouseName">Spouse Name</Label>
+                        <Label htmlFor="spouseName">{language === 'en' ? 'Spouse Name' : 'पति/पत्नीको नाम'}</Label>
                         <Input
                           id="spouseName"
                           value={formData.spouseName}
@@ -385,7 +397,7 @@ const Membership = () => {
                     )}
                     
                     <div>
-                      <Label htmlFor="occupation">Occupation</Label>
+                      <Label htmlFor="occupation">{language === 'en' ? 'Occupation' : 'पेशा'}</Label>
                       <Input
                         id="occupation"
                         value={formData.occupation}
@@ -416,12 +428,12 @@ const Membership = () => {
                 {/* Contact Information */}
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-maroon-700 border-b border-saffron-200 pb-2">
-                    Contact Information
+                    {language === 'en' ? 'Contact Information' : 'सम्पर्क जानकारी'}
                   </h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email">{language === 'en' ? 'Email Address *' : 'इमेल ठेगाना *'}</Label>
                       <Input
                         id="email"
                         type="email"
@@ -433,7 +445,7 @@ const Membership = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="phone">Phone Number *</Label>
+                      <Label htmlFor="phone">{language === 'en' ? 'Phone Number *' : 'फोन नम्बर *'}</Label>
                       <Input
                         id="phone"
                         required
@@ -454,7 +466,7 @@ const Membership = () => {
                     </div>
                     
                     <div>
-                      <Label htmlFor="city">City *</Label>
+                      <Label htmlFor="city">{language === 'en' ? 'City *' : 'शहर *'}</Label>
                       <Input
                         id="city"
                         required
@@ -465,7 +477,7 @@ const Membership = () => {
                     </div>
                     
                     <div className="md:col-span-2">
-                      <Label htmlFor="currentAddress">Current Address *</Label>
+                      <Label htmlFor="currentAddress">{language === 'en' ? 'Current Address *' : 'हालको ठेगाना *'}</Label>
                       <Textarea
                         id="currentAddress"
                         required
@@ -568,7 +580,10 @@ const Membership = () => {
                       onCheckedChange={(checked) => handleInputChange("newsletter", checked as boolean)}
                     />
                     <Label htmlFor="newsletter" className="text-sm">
-                      Subscribe to our newsletter for updates and announcements
+                      {language === 'en' 
+                        ? 'Subscribe to our newsletter for updates and announcements'
+                        : 'अपडेट र घोषणाहरूका लागि हाम्रो न्यूजलेटरमा सब्स्क्राइब गर्नुहोस्'
+                      }
                     </Label>
                   </div>
                   
@@ -579,7 +594,10 @@ const Membership = () => {
                       onCheckedChange={(checked) => handleInputChange("terms", checked as boolean)}
                     />
                     <Label htmlFor="terms" className="text-sm">
-                      I agree to the terms and conditions of Nepal Agrawal Samaj *
+                      {language === 'en' 
+                        ? 'I agree to the terms and conditions of Nepal Agrawal Samaj *'
+                        : 'म नेपाल अग्रवाल समाजका नियम र सर्तहरूमा सहमत छु *'
+                      }
                     </Label>
                   </div>
                 </div>
@@ -588,9 +606,9 @@ const Membership = () => {
                 <div className="pt-6">
                   <Button
                     type="submit" 
-                    className="w-full bg-maroon-600 hover:bg-maroon-700 text-white py-3 text-lg"
+                    className="w-full bg-maroon-600 hover:bg-maroon-700 text-white py-3 text-lg btn-animated"
                   >
-                    Submit Registration
+                    {language === 'en' ? 'Submit Registration' : 'दर्ता पेश गर्नुहोस्'}
                   </Button>
                 </div>
               </form>
