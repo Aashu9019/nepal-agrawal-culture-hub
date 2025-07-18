@@ -77,7 +77,7 @@ const Index = () => {
                   loading="lazy"
                   src="/lovable-uploads/4c8e1252-8fc4-4179-b13a-d4d7a06f9936.png"
                   alt={t('maharaja.name')}
-                  className="w-full max-w-md h-auto rounded-lg shadow-2xl border-4 border-gold-300 animate-float hover:scale-105 transition-all duration-500"
+                  className="w-full max-w-md h-auto rounded-lg shadow-2xl border-4 border-gold-300 hover:scale-105 transition-all duration-500"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-saffron-600 text-white p-4 rounded-lg shadow-lg animate-pulse language-transition">
                   <p className="font-semibold text-sm">{t('maharaja.name')}</p>
