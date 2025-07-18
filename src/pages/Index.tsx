@@ -44,15 +44,15 @@ const Index = () => {
   return (
     <div className="min-h-screen language-transition">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-saffron-100 via-emerald-50 to-gold-100 py-20">
+      <section className="relative bg-gradient-to-br from-saffron-100 via-emerald-50 to-gold-100 py-20 animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left language-transition">
-              <h1 className="text-5xl lg:text-6xl font-bold text-maroon-800 mb-6 font-serif fade-in-up">
+            <div className="text-center lg:text-left language-transition animate-fade-in" style={{animationDelay: '0.2s'}}>
+              <h1 className="text-5xl lg:text-6xl font-bold text-maroon-800 mb-6 font-serif">
                 {t('home.welcome')}
-                <span className="block text-saffron-600 slide-in-right">{t('home.title')}</span>
+                <span className="block text-saffron-600">{t('home.title')}</span>
               </h1>
-              <p className="text-xl text-emerald-700 mb-4 font-medium slide-in-left">
+              <p className="text-xl text-emerald-700 mb-4 font-medium">
                 {t('home.subtitle')}
               </p>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed language-transition">
@@ -60,26 +60,26 @@ const Index = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button asChild className="bg-maroon-600 hover:bg-maroon-700 text-white px-8 py-3 text-lg photo-hover-effect">
+                <Button asChild className="bg-maroon-600 hover:bg-maroon-700 text-white px-8 py-3 text-lg hover:scale-105 transition-all duration-300">
                   <Link to="/membership">
                     {t('home.becomeMember')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-saffron-600 text-saffron-700 hover:bg-saffron-50 px-8 py-3 text-lg photo-hover-effect">
+                <Button asChild variant="outline" className="border-saffron-600 text-saffron-700 hover:bg-saffron-50 px-8 py-3 text-lg hover:scale-105 transition-all duration-300">
                   <Link to="/about">{t('home.learnMore')}</Link>
                 </Button>
               </div>
             </div>
-            <div className="flex justify-center"> 
+            <div className="flex justify-center animate-fade-in" style={{animationDelay: '0.4s'}}> 
               <div className="relative">
                 <img
                   loading="lazy"
                   src="/lovable-uploads/4c8e1252-8fc4-4179-b13a-d4d7a06f9936.png"
                   alt={t('maharaja.name')}
-                  className="w-full max-w-md h-auto rounded-lg shadow-2xl border-4 border-gold-300 floating-animation shimmer-effect pulse-glow"
+                  className="w-full max-w-md h-auto rounded-lg shadow-2xl border-4 border-gold-300 animate-float hover:scale-105 transition-all duration-500"
                 />
-                <div className="absolute -bottom-4 -right-4 bg-saffron-600 text-white p-4 rounded-lg shadow-lg photo-hover-effect language-transition">
+                <div className="absolute -bottom-4 -right-4 bg-saffron-600 text-white p-4 rounded-lg shadow-lg animate-pulse language-transition">
                   <p className="font-semibold text-sm">{t('maharaja.name')}</p>
                   <p className="text-xs">{t('home.maharajaCaption')}</p>
                 </div>
@@ -92,17 +92,17 @@ const Index = () => {
       {/* Mission & Vision */}
       <section className="py-16 bg-white language-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up">{t('home.purpose')}</h2>
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">{t('home.purpose')}</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto language-transition">
               {t('home.purposeDesc')}
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
+            <Card className="border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 card-animated">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-saffron-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation">
+                <div className="w-16 h-16 bg-saffron-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-float">
                   <Users className="h-8 w-8 text-saffron-600" />
                 </div>
                 <CardTitle className="text-maroon-700 language-transition">{t('home.unity')}</CardTitle>
@@ -114,9 +114,9 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
+            <Card className="border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 card-animated">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation" style={{ animationDelay: '1s' }}>
+                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style={{ animationDelay: '1s' }}>
                   <Heart className="h-8 w-8 text-emerald-600" />
                 </div>
                 <CardTitle className="text-maroon-700 language-transition">{t('home.heritage')}</CardTitle>
@@ -128,9 +128,9 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-gold-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
+            <Card className="border-gold-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 card-animated">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation" style={{ animationDelay: '2s' }}>
+                <div className="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style={{ animationDelay: '2s' }}>
                   <Calendar className="h-8 w-8 text-gold-600" />
                 </div>
                 <CardTitle className="text-maroon-700 language-transition">{t('home.growth')}</CardTitle>
@@ -148,15 +148,15 @@ const Index = () => {
       {/* Events Carousel */}
       <section className="py-16 bg-gradient-to-r from-emerald-50 to-saffron-50 language-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up">{t('home.events')}</h2>
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif">{t('home.events')}</h2>
             <p className="text-lg text-gray-600 language-transition">
               {t('home.eventsDesc')}
             </p>
           </div>
 
-          <div className="relative">
-            <div className="overflow-hidden rounded-xl shadow-2xl shimmer-effect">
+          <div className="relative animate-fade-in" style={{animationDelay: '0.3s'}}>
+            <div className="overflow-hidden rounded-xl shadow-2xl">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -166,11 +166,11 @@ const Index = () => {
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="w-full h-96 object-cover photo-hover-effect"
+                      className="w-full h-96 object-cover hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white language-transition">
+                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white language-transition animate-fade-in">
                       <h3 className="text-3xl font-bold mb-2">{event.title}</h3>
                       <p className="text-lg mb-2">{event.description}</p>
                       <p className="text-saffron-200 font-medium">{event.date}</p>
@@ -183,13 +183,13 @@ const Index = () => {
             {/* Navigation buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all photo-hover-effect"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all hover:scale-110"
             >
               <ChevronLeft className="h-6 w-6 text-maroon-600" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all photo-hover-effect"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all hover:scale-110"
             >
               <ChevronRight className="h-6 w-6 text-maroon-600" />
             </button>
@@ -200,7 +200,7 @@ const Index = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all photo-hover-effect ${
+                  className={`w-3 h-3 rounded-full transition-all hover:scale-125 ${
                     index === currentSlide ? "bg-maroon-600 scale-110" : "bg-gray-300"
                   }`}
                 />
@@ -208,8 +208,8 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="text-center mt-8">
-            <Button asChild className="bg-saffron-600 hover:bg-saffron-700 text-white px-8 py-3 photo-hover-effect">
+          <div className="text-center mt-8 animate-fade-in" style={{animationDelay: '0.5s'}}>
+            <Button asChild className="bg-saffron-600 hover:bg-saffron-700 text-white px-8 py-3 hover:scale-105 transition-all duration-300">
               <Link to="/events">
                 {t('home.viewAllEvents')}
                 <ArrowRight className="ml-2 h-5 w-5" />
