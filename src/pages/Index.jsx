@@ -195,26 +195,17 @@ const Index = () => {
             </button>
 
             {/* Dots indicator */}
-            <div className="flex justify-center mt-6 space-x-2">
+            <div className="flex justify-center space-x-2 mt-6">
               {events.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all photo-hover-effect ${
-                    index === currentSlide ? "bg-maroon-600 scale-110" : "bg-gray-300"
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    currentSlide === index ? 'bg-maroon-600' : 'bg-gray-300'
                   }`}
                 />
               ))}
             </div>
-          </div>
-
-          <div className="text-center mt-8 fade-in-up" style={{animationDelay: '1.2s'}}>
-            <Button asChild className="bg-saffron-600 hover:bg-saffron-700 text-white px-8 py-3 photo-hover-effect shimmer-effect">
-              <Link to="/events">
-                {t('home.viewAllEvents')}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>

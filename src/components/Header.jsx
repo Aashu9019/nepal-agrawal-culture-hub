@@ -22,7 +22,7 @@ const Header = () => {
     { name: "nav.contact", href: "/contact" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className="bg-gradient-to-r from-saffron-50 to-emerald-50 shadow-lg border-b-4 border-gold-500 language-transition">
