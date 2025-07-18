@@ -86,7 +86,7 @@ const Gallery = () => {
     item.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(language === 'en' ? 'en-US' : 'ne-NP', { 
       year: 'numeric', 
@@ -95,21 +95,25 @@ const Gallery = () => {
     });
   };
 
-  const getCategoryColor = (category: string) => {
+  const getCategoryColor = (category) => {
     switch (category) {
       case 'cultural': return 'bg-saffron-100 text-saffron-800';
       case 'service': return 'bg-emerald-100 text-emerald-800';
       case 'business': return 'bg-maroon-100 text-maroon-800';
+      case 'education': return 'bg-blue-100 text-blue-800';
+      case 'community': return 'bg-purple-100 text-purple-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
 
-  const getCategoryLabel = (category: string) => {
+  const getCategoryLabel = (category) => {
     if (language === 'en') {
       switch (category) {
         case 'cultural': return 'Cultural';
         case 'service': return 'Service';
         case 'business': return 'Business';
+        case 'education': return 'Education';
+        case 'community': return 'Community';
         default: return category;
       }
     } else {
@@ -117,6 +121,8 @@ const Gallery = () => {
         case 'cultural': return 'सांस्कृतिक';
         case 'service': return 'सेवा';
         case 'business': return 'व्यापार';
+        case 'education': return 'शिक्षा';
+        case 'community': return 'समुदाय';
         default: return category;
       }
     }

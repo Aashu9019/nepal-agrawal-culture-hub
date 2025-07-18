@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type Language = 'en' | 'ne';
@@ -95,6 +94,14 @@ const translations = {
     'gallery.description': 'Capturing precious moments and cherished memories of our community events and celebrations',
     'gallery.clickToView': 'Click to View',
     'gallery.viewPhotos': 'View all {count} photos from this event',
+    'gallery.searchPlaceholder': 'Search photos...',
+    'gallery.featured': 'Featured Photos',
+    'gallery.featuredBadge': 'Featured',
+    'gallery.allPhotos': 'All Photos',
+    'gallery.views': 'views',
+    'gallery.viewDetails': 'View Details',
+    'gallery.viewPhoto': 'View Photo',
+    'gallery.noResults': 'No photos found matching your search.',
     
     // Contact Page
     'contact.title': 'Contact Us',
@@ -206,6 +213,14 @@ const translations = {
     'gallery.description': 'हाम्रो सामुदायिक कार्यक्रम र उत्सवहरूका बहुमूल्य क्षणहरू र प्रिय सम्झनाहरू कैद गर्दै',
     'gallery.clickToView': 'हेर्न क्लिक गर्नुहोस्',
     'gallery.viewPhotos': 'यस कार्यक्रमका सबै {count} तस्बिरहरू हेर्नुहोस्',
+    'gallery.searchPlaceholder': 'फोटोहरू खोज्नुहोस्...',
+    'gallery.featured': 'विशेष फोटोहरू',
+    'gallery.featuredBadge': 'विशेष',
+    'gallery.allPhotos': 'सबै फोटोहरू',
+    'gallery.views': 'हेराइ',
+    'gallery.viewDetails': 'विवरण हेर्नुहोस्',
+    'gallery.viewPhoto': 'फोटो हेर्नुहोस्',
+    'gallery.noResults': 'तपाईंको खोजसँग मेल खाने कुनै फोटो फेला परेन।',
     
     // Contact Page
     'contact.title': 'हामीसँग सम्पर्क गर्नुहोस्',
