@@ -42,25 +42,25 @@ const Index = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + events.length) % events.length);
 
   return (
-    <div className="min-h-screen language-transition page-enter">
+    <div className="min-h-screen language-transition">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-saffron-100 via-emerald-50 to-gold-100 py-20 fade-in-up" style={{animationDelay: '0.1s'}}>
+      <section className="relative bg-gradient-to-br from-saffron-100 via-emerald-50 to-gold-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left language-transition fade-in-up" style={{animationDelay: '0.2s'}}>
-              <h1 className="text-5xl lg:text-6xl font-bold text-maroon-800 mb-6 font-serif slide-in-left">
+            <div className="text-center lg:text-left language-transition">
+              <h1 className="text-5xl lg:text-6xl font-bold text-maroon-800 mb-6 font-serif fade-in-up">
                 {t('home.welcome')}
-                <span className="block text-saffron-600 slide-in-right" style={{animationDelay: '0.4s'}}>{t('home.title')}</span>
+                <span className="block text-saffron-600 slide-in-right">{t('home.title')}</span>
               </h1>
-              <p className="text-xl text-emerald-700 mb-4 font-medium fade-in-up" style={{animationDelay: '0.6s'}}>
+              <p className="text-xl text-emerald-700 mb-4 font-medium slide-in-left">
                 {t('home.subtitle')}
               </p>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed language-transition fade-in-up" style={{animationDelay: '0.8s'}}>
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed language-transition">
                 {t('home.description')}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in-up" style={{animationDelay: '1s'}}>
-                <Button asChild className="bg-maroon-600 hover:bg-maroon-700 text-white px-8 py-3 text-lg photo-hover-effect shimmer-effect">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button asChild className="bg-maroon-600 hover:bg-maroon-700 text-white px-8 py-3 text-lg photo-hover-effect">
                   <Link to="/membership">
                     {t('home.becomeMember')}
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -71,7 +71,7 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-            <div className="flex justify-center fade-in-up" style={{animationDelay: '0.3s'}}> 
+            <div className="flex justify-center"> 
               <div className="relative">
                 <img
                   loading="lazy"
@@ -90,17 +90,17 @@ const Index = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 bg-white language-transition fade-in-up" style={{animationDelay: '0.5s'}}>
+      <section className="py-16 bg-white language-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up" style={{animationDelay: '0.6s'}}>{t('home.purpose')}</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto language-transition fade-in-up" style={{animationDelay: '0.7s'}}>
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up">{t('home.purpose')}</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto language-transition">
               {t('home.purposeDesc')}
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
-            <Card className="border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect card-animated">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="border-saffron-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-saffron-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation">
                   <Users className="h-8 w-8 text-saffron-600" />
@@ -114,7 +114,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect card-animated">
+            <Card className="border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation" style={{ animationDelay: '1s' }}>
                   <Heart className="h-8 w-8 text-emerald-600" />
@@ -128,7 +128,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-gold-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect card-animated">
+            <Card className="border-gold-200 shadow-lg hover:shadow-xl transition-all duration-300 photo-hover-effect shimmer-effect">
               <CardHeader className="text-center">
                 <div className="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4 floating-animation" style={{ animationDelay: '2s' }}>
                   <Calendar className="h-8 w-8 text-gold-600" />
@@ -146,16 +146,16 @@ const Index = () => {
       </section>
 
       {/* Events Carousel */}
-      <section className="py-16 bg-gradient-to-r from-emerald-50 to-saffron-50 language-transition fade-in-up" style={{animationDelay: '0.8s'}}>
+      <section className="py-16 bg-gradient-to-r from-emerald-50 to-saffron-50 language-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up" style={{animationDelay: '0.9s'}}>{t('home.events')}</h2>
-            <p className="text-lg text-gray-600 language-transition fade-in-up" style={{animationDelay: '1s'}}>
+            <h2 className="text-4xl font-bold text-maroon-800 mb-4 font-serif fade-in-up">{t('home.events')}</h2>
+            <p className="text-lg text-gray-600 language-transition">
               {t('home.eventsDesc')}
             </p>
           </div>
 
-          <div className="relative fade-in-up" style={{animationDelay: '1.1s'}}>
+          <div className="relative">
             <div className="overflow-hidden rounded-xl shadow-2xl shimmer-effect">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
@@ -195,17 +195,26 @@ const Index = () => {
             </button>
 
             {/* Dots indicator */}
-            <div className="flex justify-center space-x-2 mt-6">
+            <div className="flex justify-center mt-6 space-x-2">
               {events.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    currentSlide === index ? 'bg-maroon-600' : 'bg-gray-300'
+                  className={`w-3 h-3 rounded-full transition-all photo-hover-effect ${
+                    index === currentSlide ? "bg-maroon-600 scale-110" : "bg-gray-300"
                   }`}
                 />
               ))}
             </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <Button asChild className="bg-saffron-600 hover:bg-saffron-700 text-white px-8 py-3 photo-hover-effect">
+              <Link to="/events">
+                {t('home.viewAllEvents')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
